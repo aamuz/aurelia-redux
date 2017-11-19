@@ -32,7 +32,7 @@ const connect = (viewModel, stateMapper) => {
   const unsubscribe = store.subscribe(subscribe);
   const originalDetached = viewModel.detached || (() => {});
   viewModel.detached = () => {
-    originalDetached();
+    originalDetached.call(viewModel);
     unsubscribe();
   };
 
